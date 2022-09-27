@@ -1,0 +1,28 @@
+*,
+*:after,
+*:before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+
+}
+
+a {
+    text-decoration: none;
+}
+
+body {
+    position: relative;
+    min-height: 100%;
+    background:-webkit-linear-gradient(to right,#243855,#243B55,#141E30) ;
+    background:linear-gradient(to right,#243855,#243B55,#141E30);
+
+
+
+}
+
+html {
+    height: 100%;
+
+}
