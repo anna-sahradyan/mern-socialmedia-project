@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {AppBar, Container, Grid, Grow, Typography} from "@material-ui/core";
 import Form from "./components/Form/Form";
 import Posts from "./components/Posts/Posts";
@@ -22,7 +22,7 @@ const App = () => {
                 </AppBar>
                 <Grow in>
                     <Container>
-                        <Grid container justify={"space-between"} alignItems={"stretch"} spacing={3}>
+                        <Grid container alignItems={"stretch"} spacing={3}>
 
                             <Grid item xs={12} sm={7}>
                                 <Posts/>
