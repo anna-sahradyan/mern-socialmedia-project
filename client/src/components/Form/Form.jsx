@@ -3,10 +3,10 @@ import {Button, Paper, TextField, Typography} from "@material-ui/core";
 import useStyles from "./formStyle";
 import FileBase from "react-file-base64";
 import {useDispatch} from "react-redux";
-import {createPost} from "../../actions/postAction";
+import {createPost,updatePost} from "../../actions/postAction";
 
 
-const Form = () => {
+const Form = ({currentId,setCurrentId}) => {
     const classes = useStyles();
     const [postData, setPostData] = useState({
         creator: "", title: "", message: "", tags: "", selectedFile: ""
@@ -18,11 +18,11 @@ const Form = () => {
     }
     const handelSubmit = (e) => {
         e.preventDefault();
-        if(postData){
-            dispatch(createPost(postData));
+        if(currentId){
+            dispatch(updatePost(currentId,postData));
         }
-       else if (!postData){
-            alert("blank is empty")
+       else {
+            dispatch(createPost(postData));
         }
 
 
