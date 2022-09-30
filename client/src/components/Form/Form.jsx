@@ -3,7 +3,7 @@ import {Button, Paper, TextField, Typography} from "@material-ui/core";
 import useStyles from "./formStyle";
 import FileBase from "react-file-base64";
 import {useDispatch} from "react-redux";
-import {createPost, } from "../../actions/postAction";
+import {createPost} from "../../actions/postAction";
 
 
 const Form = () => {
@@ -28,7 +28,7 @@ const Form = () => {
 
     }
     return (
-        <>
+
             <Paper className={classes.paper}>
                 <form autoComplete={"off"} noValidate className={`${classes.form} ${classes.root}`}
                       onSubmit={handelSubmit}>
@@ -85,7 +85,7 @@ const Form = () => {
                             onClick={clear}> Clear</Button>
                 </form>
             </Paper>
-        </>
+
     );
 };
 

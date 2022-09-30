@@ -19,13 +19,15 @@ export default makeStyles((theme) => ({
         justifyContent:"space-between",
         borderRadius:"15px",
         height:"100%",
-        position:"relative"
+        position:"relative",
+
     },
     overlay: {
         position:"absolute",
         top:"20px",
         left:"20px",
         color:'white',
+
     },
     overlay2: {
         position:"absolute",
