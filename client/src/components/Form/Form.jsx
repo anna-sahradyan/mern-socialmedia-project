@@ -16,7 +16,7 @@ const Form = ({currentId, setCurrentId}) => {
     useEffect(() => {
         if (post) setPostData(post)
     }, [post]);
-    console.log(post)
+
 
     const handelSubmit = (e) => {
         e.preventDefault();
@@ -25,6 +25,7 @@ const Form = ({currentId, setCurrentId}) => {
         } else {
             dispatch(createPost(postData));
         }
+        clear();
 
 
     }
