@@ -57,9 +57,13 @@ export default makeStyles((theme) => ({
     },
     date: {
         color: "black",
-        marginTop: "-20px",
+        marginTop: "5px",
         marginLeft: "-20px",
 
+    },
+    creator:{
+        marginTop: "-20px",
+        marginLeft: "5px",
     }
 }))
 

@@ -13,11 +13,13 @@ const Post = ({post,setCurrentId}) => {
             <Card className={classes.card}>
                 <CardMedia className={classes.media} image={post.selectedFile} title={post.title}/>
                 <div className={classes.overlay}>
-                    <Typography variant={"h6"}>{post.creator}</Typography>
+                    <Typography variant={"h6"} className={classes.creator}>{post.creator}</Typography>
                     <Typography variant={"body2"} className={classes.date}>{moment(post.createdAt).fromNow()}</Typography>
                 </div>
                 <div className={classes.overlay2}>
-                    <Button style={{size:"small"}}  onClick={() => setCurrentId(post._id)}>
+                    <Button style={{color:"black"}}
+                            size = "small"
+                            onClick={() => setCurrentId(post._id)}>
                         <MoreHorizIcon fontSize="default"/>
                     </Button>
                 </div>
