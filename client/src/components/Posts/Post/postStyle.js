@@ -19,7 +19,10 @@ export default makeStyles((theme) => ({
         justifyContent: "space-between",
         borderRadius: "15px",
         height: "100%",
+        width:"250px",
         position: "relative",
+        margin:"5px",
+
 
 
     },
@@ -53,6 +56,8 @@ export default makeStyles((theme) => ({
         padding: "0 16px 8px 16px",
         display: "flex",
         justifyContent: "space-between",
+
+
 
     },
     date: {
