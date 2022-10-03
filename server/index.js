@@ -5,6 +5,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import postRouter from "./routes/posts.auth.js";
 
+
 dotenv.config();
 const PORT = process.env.PORT || 3002
 const app = express();

@@ -19,7 +19,7 @@ export default makeStyles((theme) => ({
         justifyContent: "space-between",
         borderRadius: "15px",
         height: "100%",
-        width:"250px",
+        width:"300px",
         position: "relative",
         margin:"5px",
 

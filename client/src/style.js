@@ -7,7 +7,8 @@ export default makeStyles((theme) => ({
         display: "flex",
         flexDirection: "row",
         justifyContent: "center",
-        alignItems: "center"
+        alignItems: "center",
+
     },
     heading: {
         color: "rgba(0,183,255,1)",
@@ -21,7 +22,6 @@ export default makeStyles((theme) => ({
             flexDirection: "column-reverse"
         }
     },
-
 
 }));
 
