@@ -28,4 +28,9 @@ export default makeStyles((theme) => ({
     googleButton:{
         marginBottom:theme.spacing(2)
     },
+    switch:{
+        color:"#F50057",
+        fontWeight:"bolder",
+       width:"100%"
+    }
 }));
