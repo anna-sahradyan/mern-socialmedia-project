@@ -26,10 +26,16 @@ export default makeStyles((theme) => ({
         display: "flex",
         justifyContent: "space-between",
         alignItems: "400px"
-    }, username: {
+    },
+    username: {
         display: "flex",
         alignItems: "center"
-    }, brandContainer: {
+    },
+
+    logout:{
+marginLeft:"30px"
+    },
+    brandContainer: {
         display: "flex",
         alignItems: "center"
     }, purple: {
