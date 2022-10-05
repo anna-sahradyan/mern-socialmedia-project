@@ -25,12 +25,7 @@ const Auth = () => {
         setIsSignup((prevIsSignup) => !prevIsSignup);
         handleShowPassword(false);
     }
-    const googleSuccess = async (res) => {
-        console.log(res)
-    }
-    const googleFailure = () => {
 
-    }
     const handleCredentialResponse = async (response) => {
         console.log("Encoded JWT ID token:" + response.credential);
         // const result = response?.profile ;
@@ -92,16 +87,6 @@ const Auth = () => {
                     </Button>
                     <Button style={{width: "100%"}} id={"signInDiv"}>
                     </Button>
-                    {/*<GoogleLogin*/}
-                    {/*    clientId="363124702080-925llpa08mjds342pl57j6t0tvu59vmi.apps.googleusercontent.com"*/}
-                    {/*    render={(renderProps) => (*/}
-                    {/*        <Button type={"submit"} fullWidth variant={"contained"} color={"primary"}*/}
-                    {/*                className={classes.googleButton} onClick={renderProps.onClick} disabled={renderProps.disabled} startIcon={<Icon/>} variant={"contained"}  >Google Sign In </Button>*/}
-                    {/*    )}*/}
-                    {/*    onSuccess={googleSuccess}*/}
-                    {/*    onFailure={googleFailure}*/}
-                    {/*    cookiePolicy={"single_host_origin"}*/}
-                    {/*/>*/}
                     <Grid item>
                         <Button onClick={switchMode} className={classes.switch}>
                             {isSignup ? "Already have an account ? Sign In" : "Don't have an account ? Sign Up"}
