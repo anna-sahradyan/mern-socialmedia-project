@@ -3,7 +3,6 @@ import {AppBar, Typography, Toolbar, Avatar, Button} from "@material-ui/core";
 import useStyles from "./navStyle";
 import {Link, useLocation} from "react-router-dom";
 import {useDispatch} from "react-redux";
-import {LOGOUT} from "../../reducers/authReducer";
 const Nav = () => {
     const classes = useStyles();
     const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));

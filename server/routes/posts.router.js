@@ -1,10 +1,12 @@
 import express from "express";
-import {getPosts,createPost,updatePost,deletePost,likePost} from "../controllers/posts.controll.js";
+import {getPosts,createPost,updatePost,deletePost,likePost,getPost} from "../controllers/posts.controll.js";
 //!GET
 const router = express.Router();
 router.get("/", getPosts);
 //!CREATE
 router.post("/",createPost);
+//!GET ID
+router.get("/:id",getPost)
 //!UPDATE
 router.patch("/:id",updatePost);
 //!DELETE
