@@ -7,6 +7,7 @@ import {useDispatch} from "react-redux";
 import {GoogleLogin} from "react-google-login";
 import Icon from "./icon";
 import jwt_decode from "jwt-decode";
+import {useNavigate} from "react-router-dom";
 
 const Auth = () => {
     const google = window.google;
@@ -14,6 +15,9 @@ const Auth = () => {
     const [isSignup, setIsSignup] = useState(false);
     const [showPassword, setShowPassword] = useState();
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    //!block
     const handleSubmit = (e) => {
         e.preventDefault();
     }
@@ -28,16 +32,13 @@ const Auth = () => {
 
     const handleCredentialResponse = async (response) => {
         console.log("Encoded JWT ID token:" + response.credential);
-        // const result = response?.profile ;
-         const token = response.credential;
+        const token = response.credential;
         const result = jwt_decode(response.credential)
-
         console.log(result)
         try {
-            dispatch({type: "AUTH", data: {result, token}})
-            console.log(token)
+            dispatch({type: "AUTH", data: {result, token}});
+            navigate("/");
         } catch (err) {
-
             console.log(err)
         }
     }
