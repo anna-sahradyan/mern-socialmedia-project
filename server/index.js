@@ -4,11 +4,12 @@ import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
 import postRoutes from "./routes/posts.router.js";
-import userRoutes from "./routes/users.router.js";
+import userRoutes from "./routes/user.router.js";
 
+const app = express();
 dotenv.config();
 const PORT = process.env.PORT || 3002
-const app = express();
+
 app.use(cors());
 app.use(bodyParser.json({limit: "30mb", extended: true}))
 app.use(bodyParser.urlencoded({limit: "30mb", extended: true}))

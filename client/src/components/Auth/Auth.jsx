@@ -35,7 +35,7 @@ const Auth = () => {
     const handleShowPassword = () => setShowPassword((prevShowPassword) => !prevShowPassword);
     const switchMode = () => {
         setIsSignup((prevIsSignup) => !prevIsSignup);
-        handleShowPassword(false);
+        setShowPassword(false);
     }
 
     const handleCredentialResponse = async (response) => {
@@ -71,36 +71,39 @@ const Auth = () => {
                 <Avatar className={classes.avatar}>
                     <LockOutlinedIcon/>
                 </Avatar>
-
                 <Typography variant={"h5"}>
                     {isSignup ? "Sign Up" : "Sign In "}
                 </Typography>
                 <form className={classes.form} onSubmit={handleSubmit}>
                     <Grid container spacing={2}>
                         {isSignup && (<>
-                            <Input name={"firstName"} label={"First Name"} handleChange={handleChange}/>
-                            <Input name={"lastName"} label={"Last Name"} handleChange={handleChange}/>
+
+                            <Input name={"firstName"} label={"First Name"} handleChange={handleChange}  half/>
+                            <Input name={"lastName"} label={"Last Name"} handleChange={handleChange}  half/>
+
                         </>)}
                         <Input name={"email"} label={"Email Address"} handleChange={handleChange} type={"email"}/>
                         <Input name={"password"} label={"Password"} handleChange={handleChange}
-                               type={setShowPassword ? "text" : "password"}
-                               handleShowPassword={handleShowPassword}/>
+                               type={showPassword ? "text" : "password"}
+                               handleShowPassword={handleShowPassword}    autoFocus/>
                         {isSignup && <Input name={"confirmPassword"} label={"Repeat Password"}
-                                            handleChange={handleChange}/>}
+                                            handleChange={handleChange} type={"password"}/>}
                     </Grid>
-
-
                     <Button type={"submit"} fullWidth variant={"contained"} color={"primary"}
                             className={classes.submit}>
                         {isSignup ? "Sign Up" : "Sign In"}
                     </Button>
+
                     <Button style={{width: "100%"}} id={"signInDiv"}>
                     </Button>
+
+
                     <Grid item>
                         <Button onClick={switchMode} className={classes.switch}>
                             {isSignup ? "Already have an account ? Sign In" : "Don't have an account ? Sign Up"}
                         </Button>
                     </Grid>
+
                 </form>
             </Paper>
         </Container>
