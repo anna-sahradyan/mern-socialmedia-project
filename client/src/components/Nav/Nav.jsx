@@ -2,23 +2,31 @@ import React, {useEffect, useState} from 'react';
 import {AppBar, Typography, Toolbar, Avatar, Button} from "@material-ui/core";
 import useStyles from "./navStyle";
 import {Link, useLocation} from "react-router-dom";
+import * as actionType from '../../constants/actionTypes';
 import {useDispatch} from "react-redux";
+import decode from "jwt-decode";
+
 const Nav = () => {
     const classes = useStyles();
     const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
     const dispatch = useDispatch();
     const location = useLocation();
+
+    const handleLogout= () => {
+        dispatch({ type: actionType.LOGOUT });
+        window.location.href = '/auth'
+
+        setUser(null);
+    };
     useEffect(() => {
         const token = user?.token;
+        if (token) {
+            const decodedToken = decode(token);
+            if (decodedToken.exp * 1000 < new Date().getTime()) handleLogout()
+        }
         setUser(JSON.parse(localStorage.getItem("profile")))
-        console.log(token)
-        console.log(user)
     }, [location]);
-    const handleLogout = () => {
-        dispatch({type: "LOGOUT"})
-        window.location.href = '/';
-        setUser(null)
-    }
+
     return (
         <>
             <AppBar position={"static"} color={"inherit"} className={classes.appBar}>

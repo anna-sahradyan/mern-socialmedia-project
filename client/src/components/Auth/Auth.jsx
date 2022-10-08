@@ -55,6 +55,7 @@ const Auth = () => {
         google.accounts.id.initialize({
             client_id: "363124702080-925llpa08mjds342pl57j6t0tvu59vmi.apps.googleusercontent.com",
             callback: handleCredentialResponse,
+
         })
 
         google.accounts.id.renderButton(
