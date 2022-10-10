@@ -15,7 +15,7 @@ const Post = ({post, setCurrentId}) => {
     const user = JSON.parse(localStorage.getItem("profile"));
     const Likes = () => {
         if (post.likes.length > 0) {
-            return post.likes.find((like) => like === (user?.result?.password
+            return post.likes.find((like) => like === (user?.result?.googleId
                 || user?.result?._id))
                 ? (
                     <><ThumbUpAltIcon
@@ -29,7 +29,7 @@ const Post = ({post, setCurrentId}) => {
         return <><ThumbUpAltOutlined fontSize="small"/>&nbsp;Like</>;
     };
 
-    console.log(user?.result)
+    // console.log(user)
     return (
 
         <Card className={classes.card}>
@@ -45,13 +45,15 @@ const Post = ({post, setCurrentId}) => {
                     marginLeft: "5px"
                 }}>{moment(post.createdAt).fromNow()}</Typography>
             </div>
-            <div className={classes.overlay2}>
-                <Button style={{marginLeft: "50px"}}
-                        size="small"
-                        onClick={() => setCurrentId(post._id)}>
-                    <MoreHorizIcon fontSize="default" style={{fontSize: 25, color: "red", textAlign: "center"}}/>
-                </Button>
-            </div>
+            {(user?.result?.googleId === post?.creator || user?.result?._id === post?.creator) && (
+                <div className={classes.overlay2}>
+                    <Button style={{marginLeft: "50px"}}
+                            size="small"
+                            onClick={() => setCurrentId(post._id)} style={{marginLeft: "110px"}}>
+                        <MoreHorizIcon fontSize="default" style={{fontSize: 25, color: "red", textAlign: "center"}}/>
+                    </Button>
+                </div>)}
+
             <div className={classes.details}>
                 <Typography variant={"body2"}
                             color={"textSecondary"}>{post.tags.map((tag) => ` #${tag}`)}</Typography>
@@ -66,8 +68,8 @@ const Post = ({post, setCurrentId}) => {
                     <b style={{color: "blue", fontSize: 14}}> &nbsp; <Likes/> &nbsp;</b>
 
                 </Button>
-                {(user?.result?.password === post?.creator || user?.result?._id === post?.creator) && (
-                    <Button size="small" color="secondary" onClick={() => dispatch(deletePost(post._id))}>
+                {(user?.result?.googleId === post?.creator || user?.result?._id === post?.creator) && (
+                    <Button size="small" color="primary" onClick={() => dispatch(deletePost(post._id))}>
                         <DeleteIcon fontSize="small"/> Delete
                     </Button>
                 )}

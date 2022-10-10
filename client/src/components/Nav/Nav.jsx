@@ -14,7 +14,7 @@ const Nav = () => {
 
     const handleLogout= () => {
         dispatch({ type: actionType.LOGOUT });
-        window.location.href = '/auth'
+        window.location.href = '/'
 
         setUser(null);
     };
