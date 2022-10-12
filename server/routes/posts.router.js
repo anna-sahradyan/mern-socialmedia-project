@@ -1,5 +1,5 @@
 import express from "express";
-import {getPosts,createPost,updatePost,deletePost,likePost} from "../controllers/posts.controll.js";
+import {getPostsBySearch,getPosts,createPost,updatePost,deletePost,likePost} from "../controllers/posts.controll.js";
 import auth from "../middleware/auth.midlleware.js";
 //!GET
 const router = express.Router();
@@ -12,4 +12,6 @@ router.patch("/:id", auth ,updatePost);
 router.delete("/:id", auth ,deletePost);
 //!LIKE auth
 router.patch("/:id/likePost", auth ,likePost);
+//!SEARCH
+router.get("/search", getPostsBySearch);
 export default router;

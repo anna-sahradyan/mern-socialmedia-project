@@ -10,7 +10,7 @@ import {
 } from "@material-ui/core";
 import Posts from "../Posts/Posts";
 import Form from "../Form/Form";
-import { getPosts } from "../../actions/postAction";
+import {getPosts, getPostsBySearch} from "../../actions/postAction";
 import { useDispatch } from "react-redux";
 import useStyles from "./homeStyle";
 import Paginate from "../paginationList/Paginate";
@@ -37,6 +37,7 @@ const Home = () => {
   //!searchPost
   const searchPost = () => {
     if (search.trim()) {
+      dispatch(getPostsBySearch({ search,tags:tags.join(",")}))
     } else {
       navigate("/");
     }
@@ -68,7 +69,7 @@ const Home = () => {
               <Posts setCurrentId={setCurrentId} />
             </Grid>
             <Grid item xs={12} sm={6} md={3}>
-              <AppBar className={classes.appBarSearch} position={"static"}>
+              <AppBar className={classes.appBarSearch} position={"static"} color={"inherit"}>
                 <TextField
                   name={"search"}
                   variant={"outlined"}
