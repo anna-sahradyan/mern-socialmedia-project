@@ -45,7 +45,7 @@ const Form = ({ currentId, setCurrentId }) => {
   };
   if (!user?.result?.name) {
     return (
-      <Paper className={classes.paper}>
+      <Paper className={classes.paper} elvation={6}>
         <Typography variant={"h6"} align={"center"}>
           Please Sign In to create your own memories and like other's memories.
         </Typography>
@@ -71,7 +71,7 @@ const Form = ({ currentId, setCurrentId }) => {
           fullWidth
           value={postData.title}
           onChange={(e) => setPostData({ ...postData, title: e.target.value })}
-        ></TextField>{" "}
+        />{" "}
         <TextField
           name={"message"}
           variant={"outlined"}
@@ -83,7 +83,7 @@ const Form = ({ currentId, setCurrentId }) => {
           onChange={(e) =>
             setPostData({ ...postData, message: e.target.value })
           }
-        ></TextField>{" "}
+        />{" "}
         <TextField
           name={"tags"}
           variant={"outlined"}
@@ -93,7 +93,7 @@ const Form = ({ currentId, setCurrentId }) => {
           onChange={(e) =>
             setPostData({ ...postData, tags: e.target.value.split(",") })
           }
-        ></TextField>
+        />
         <div className={classes.fileInput}>
           <FileBase
             type={"file"}
@@ -101,7 +101,7 @@ const Form = ({ currentId, setCurrentId }) => {
             onDone={({ base64 }) =>
               setPostData({ ...postData, selectedFile: base64 })
             }
-          ></FileBase>
+          />
         </div>
         <Button
           className={classes.buttonSubmit}
