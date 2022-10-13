@@ -20,37 +20,26 @@ const Post = ({ post, setCurrentId }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const user = JSON.parse(localStorage.getItem("profile"));
-  const Likes = () => {
-    if (post.likes.length > 0) {
-      return post.likes.find(
-        (like) => like === (user?.result?.googleId || user?.result?._id)
-      ) ? (
-        <>
-          <ThumbUpAltIcon fontSize="small" />
-          &nbsp;
-          {post.likes.length > 2
-            ? `You and ${post.likes.length - 1} others`
-            : `${post.likes.length} like${post.likes.length > 1 ? "s" : ""}`}
-        </>
-      ) : (
-        <>
-          <ThumbUpAltOutlined fontSize="small" />
-          &nbsp;{post.likes.length} {post.likes.length === 1 ? "Like" : "Likes"}
-        </>
-      );
-    }
 
-    return (
-      <>
-        <ThumbUpAltOutlined fontSize="small" />
-        &nbsp;Like
-      </>
-    );
-  };
+    const userId = user?.result.googleId || user?.result?._id;
+    const Likes = () => {
+        if (post?.likes?.length > 0) {
+            return post.likes.find((like) => like === (user?.result?.googleId || user?.result?._id))
+                ? (
+                    <><ThumbUpAltIcon fontSize="small" />&nbsp;{post.likes.length > 2 ? `You and ${post.likes.length - 1} others` : `${post.likes.length} like${post.likes.length > 1 ? 's' : ''}` }</>
+                ) : (
+                    <><ThumbUpAltOutlined fontSize="small" />&nbsp;{post.likes.length} {post.likes.length === 1 ? 'Like' : 'Likes'}</>
+                );
+        }
 
-  // console.log(user)
+        return <><ThumbUpAltOutlined fontSize="small" />&nbsp;Like</>;
+    };
+
+
+
+   console.log(userId )
   return (
-    <Card className={classes.card}>
+    <Card className={classes.card} raised elevation={12}>
       <CardMedia
         className={classes.media}
         image={
@@ -75,18 +64,18 @@ const Post = ({ post, setCurrentId }) => {
           {moment(post.createdAt).fromNow()}
         </Typography>
       </div>
-      {(user?.result?.googleId === post?.creator ||
+      {(user?.result?.iat === post?.creator ||
         user?.result?._id === post?.creator) && (
         <div className={classes.overlay2}>
           <Button
             style={{ marginLeft: "50px" }}
             size="small"
             onClick={() => setCurrentId(post._id)}
-            style={{ marginLeft: "110px" }}
+            // style={{ marginLeft: "110px" }}
           >
             <MoreHorizIcon
               fontSize="default"
-              style={{ fontSize: 25, color: "red", textAlign: "center" }}
+              // style={{ fontSize: 25, color: "red", textAlign: "center" }}
             />
           </Button>
         </div>
@@ -117,8 +106,8 @@ const Post = ({ post, setCurrentId }) => {
             &nbsp; <Likes /> &nbsp;
           </b>
         </Button>
-        {(user?.result?.googleId === post?.creator ||
-          user?.result?._id === post?.creator) && (
+        {user?.result?.googleId === post?.creator ||
+          user?.result?._id === post?.creator &&
           <Button
             size="small"
             color="primary"
@@ -126,7 +115,8 @@ const Post = ({ post, setCurrentId }) => {
           >
             <DeleteIcon fontSize="small" /> Delete
           </Button>
-        )}
+        }
+
       </CardActions>
     </Card>
   );
