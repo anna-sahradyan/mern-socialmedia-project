@@ -1,12 +1,13 @@
 import React from "react";
 import useStyles from "./postStyle";
 import {
-    Button, ButtonBase,
+    Button,
     Card,
     CardActions,
     CardContent,
     CardMedia,
     Typography,
+    ButtonBase
 } from "@material-ui/core";
 import moment from "moment";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
@@ -16,6 +17,7 @@ import {useDispatch} from "react-redux";
 import {deletePost, likePost} from "../../../actions/postAction";
 import {ThumbUpAltOutlined} from "@material-ui/icons";
 import {useNavigate} from "react-router-dom";
+
 
 const Post = ({post, setCurrentId}) => {
     const classes = useStyles();
@@ -44,90 +46,65 @@ const Post = ({post, setCurrentId}) => {
 
     return (
         <Card className={classes.card} raised elevation={6}>
-            <ButtonBase className={classes.cardAction}
-                        onClick={openPost}>
-
-
-                <CardMedia
-                    className={classes.media}
-                    image={
-                        post.selectedFile ||
-                        "https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png"
-                    }
-                    title={post.title}
-                />
+            <ButtonBase
+                component="span"
+                name="test"
+                className={classes.cardAction}
+                onClick={openPost}
+            >
+                <CardMedia className={classes.media} image={post.selectedFile || 'https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png'} title={post.title} />
                 <div className={classes.overlay}>
-                    <Typography variant={"h6"} className={classes.creator}>
-                        {post.name}
-                    </Typography>
-                    <Typography
-                        variant={"body2"}
-                        className={classes.date}
-                        style={{
-                            color: "blue",
-                            fontSize: 14,
-                            marginLeft: "5px",
-                        }}
-                    >
-                        {moment(post.createdAt).fromNow()}
-                    </Typography>
+                    <Typography variant="h6">{post.name}</Typography>
+                    <Typography variant="body2">{moment(post.createdAt).fromNow()}</Typography>
                 </div>
-                {(user?.result?.googleId === post?.creator ||
-                    user?.result?._id === post?.creator) && (
-                    <div className={classes.overlay2}>
+                {(user?.result?.googleId === post?.creator || user?.result?._id === post?.creator) && (
+                    <div className={classes.overlay2} name="edit">
                         <Button
-                            style={{marginLeft: "50px"}}
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                setCurrentId(post._id);
+                            }}
+                            style={{ color: 'white' }}
                             size="small"
-                            onClick={() => setCurrentId(post._id)}
                         >
-                            <MoreHorizIcon
-                                fontSize="default"
-                                style={{fontSize: 25, color: "#F50057", textAlign: "center", marginLeft: "110px"}}
-                            />
+                            <MoreHorizIcon fontSize="default" style={{fontSize: 25, color: "#F50057", textAlign: "center", marginLeft: "110px"}}/>
                         </Button>
                     </div>
                 )}
-
                 <div className={classes.details}>
-                    <Typography variant={"body2"} color={"textSecondary"}>
-                        {post.tags.map((tag) => ` #${tag}`)}
-                    </Typography>
+                    <Typography variant="body2" color="textSecondary" component="h2">{post.tags.map((tag) => `#${tag} `)}</Typography>
                 </div>
-                <Typography className={classes.title} variant={"h5"} gutterBottom>
-                    {post.title}
-                </Typography>
+                <Typography className={classes.title} gutterBottom variant="h5" component="h2">{post.title}</Typography>
                 <CardContent>
-                    <Typography variant={"body2"} color={"textSecondary"} component={"p"}>
-                        {post.message}
-                    </Typography>
+                    <Typography variant="body2" color="textSecondary" component="p">{post.message.split(' ').splice(0, 20).join(' ')}...</Typography>
                 </CardContent>
             </ButtonBase>
-            <CardActions className={classes.cardActions}>
-                <Button
-                    size={"small"}
-                    color={"primary"}
-                    disabled={!user?.result}
-                    onClick={() => dispatch(likePost(post._id))}
-                >
-                    <b style={{color: "blue", fontSize: 14}}>
-                        {" "}
-                        &nbsp; <Likes/> &nbsp;
-                    </b>
-                </Button>
-                {user?.result?.googleId === post?.creator ||
-                    user?.result?._id === post?.creator &&
+                <CardActions className={classes.cardActions}>
                     <Button
-                        size="small"
-                        color="primary"
-                        onClick={() => dispatch(deletePost(post._id))}
-                        style={{fontWeight: 900}}>
-                        <DeleteIcon fontSize="small"/> Delete
+                        size={"small"}
+                        color={"primary"}
+                        disabled={!user?.result}
+                        onClick={() => dispatch(likePost(post._id))}
+                    >
+                        <b style={{color: "blue", fontSize: 14}}>
+                            {" "}
+                            &nbsp; <Likes/> &nbsp;
+                        </b>
                     </Button>
-                }
+                    {user?.result?.googleId === post?.creator ||
+                        user?.result?._id === post?.creator &&
+                        <Button
+                            size="small"
+                            color="primary"
+                            onClick={() => dispatch(deletePost(post._id))}
+                            style={{fontWeight: 900}}>
+                            <DeleteIcon fontSize="small"/> Delete
+                        </Button>
+                    }
 
-            </CardActions>
+                </CardActions>
         </Card>
-    );
+);
 };
 
 export default Post;
