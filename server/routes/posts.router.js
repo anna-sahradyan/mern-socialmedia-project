@@ -3,6 +3,8 @@ import {getPostsBySearch,getPosts,createPost,updatePost,deletePost,likePost,getP
 import auth from "../middleware/auth.midlleware.js";
 
 const router = express.Router();
+//!SEARCH
+router.get("/search", getPostsBySearch);
 //!GET POSTS
 router.get("/", getPosts);
 //!GET POST
@@ -15,6 +17,5 @@ router.patch("/:id", auth ,updatePost);
 router.delete("/:id", auth ,deletePost);
 //!LIKE auth
 router.patch("/:id/likePost", auth ,likePost);
-//!SEARCH
-router.get("/search", getPostsBySearch);
+
 export default router;
