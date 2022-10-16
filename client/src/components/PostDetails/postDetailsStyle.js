@@ -50,4 +50,4 @@ export default makeStyles((theme) => ({
         overflowY: 'auto',
         marginRight: '30px',
     },
-}));;
+}));
